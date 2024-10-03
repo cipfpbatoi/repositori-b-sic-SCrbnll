@@ -11,7 +11,7 @@
     <?php
     function comptarVocals($cadena) {
         $cadena = strtolower($cadena); 
-        $vocales = ['a', 'e', 'i', 'o', 'u']; s
+        $vocales = ['a', 'e', 'i', 'o', 'u']; 
         $comptador = 0;
 
         for ($i = 0; $i < strlen($cadena); $i++) {

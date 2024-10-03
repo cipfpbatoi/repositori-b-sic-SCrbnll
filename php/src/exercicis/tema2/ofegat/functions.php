@@ -18,4 +18,4 @@ function comprovarLletra($paraula, $lletra, &$lletresEndevinades) {
 function mostrarLletresEndevinades($lletresEndevinades) {
     return implode(" ", $lletresEndevinades);
 }
-?>
+

@@ -8,7 +8,7 @@ $graella[5][4] = 2;
 
 $jugadorActual = 1;
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['columna'])) {
-    $columna = (int)$_POST['columna'] - 1;  // Restar 1 para que coincida con el índice del array
+    $columna = (int)$_POST['columna'] - 1; 
     if (ferMoviment($graella, $columna, $jugadorActual)) {
     } else {
         echo "<p>La columna está llena. Por favor, elige otra columna.</p>";
@@ -73,4 +73,3 @@ echo "<form action='' method='post'>
 
 echo "<p>Jugador actual: Jugador 1 (Rojo)</p>";
 echo "</body></html>";
-?>
