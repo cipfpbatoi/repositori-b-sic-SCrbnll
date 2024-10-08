@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($
 
     if (isset($usuaris[$username]) && $usuaris[$username] === $password) {
         $_SESSION['username'] = $username;
-        if($_POST['cookieCheckbox']) {
+        if(isset($_POST['cookieCheckbox'])) {
             setcookie('nomUsuari', $username, ['secure' => true,'httponly' => true, 'samesite' => 'Lax']);
         }
     } else {
