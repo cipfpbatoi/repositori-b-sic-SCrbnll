@@ -98,7 +98,6 @@ echo "<!DOCTYPE html>
 
 echo pintarGraella($graella, $guanyador !== null);
 
-// Mostrar mensaje del ganador o empate
 if ($guanyador !== null) {
     if ($guanyador == 0) {
         echo "<p>Empat! El tauler està ple.</p>";
@@ -107,7 +106,6 @@ if ($guanyador !== null) {
     }
 }
 
-// Mostrar el botón para reiniciar siempre
 echo "<form action='' method='post'>
         <button type='submit' name='reiniciar'>Reiniciar Joc</button>
       </form>
@@ -115,7 +113,6 @@ echo "<form action='' method='post'>
         <button type='submit'>Volver a la pàgina d'inici</button>
     </form>";
 
-// Mostrar el jugador actual
 if ($guanyador === null) {
     echo "<p>Jugador actual: Jugador " . $_SESSION['jugadorActual'] . " (" . ($_SESSION['jugadorActual'] == 1 ? "Roig" : "Groc") . ")</p>";
 }
