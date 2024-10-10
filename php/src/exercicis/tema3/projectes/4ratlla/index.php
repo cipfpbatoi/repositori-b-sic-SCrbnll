@@ -2,7 +2,7 @@
 session_start();
 include 'functions.php';
 
-if ($_COOKIE['logged'] !== '1') {
+if (!isset($_COOKIE['logged']) || $_COOKIE['logged'] !== '1') {
     echo "<p>Acceso denegado. Debes iniciar sesión para acceder a esta página.</p>";
     echo "<a href='../index.php'>Volver a la página de inicio de sesión</a>";
     exit(); 
