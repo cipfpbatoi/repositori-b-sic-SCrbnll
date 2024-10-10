@@ -7,11 +7,19 @@ $usuaris = [
 
 $loggedIn = isset($_SESSION['username']);
 
+if (isset($_COOKIE['nomUsuari'])) {
+    $loggedIn = true;
+    $username = $_COOKIE['nomUsuari'];
+} else {
+    $loggedIn = false;
+}
+
 $missatge = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
+    setcookie('logged', true, ['secure' => true,'httponly' => true, 'samesite' => 'Lax']);
     if (isset($usuaris[$username]) && $usuaris[$username] === $password) {
         $_SESSION['username'] = $username;
         if(isset($_POST['cookieCheckbox'])) {
@@ -27,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if (isset($_GET['logout'])) {
     session_destroy();
     setcookie('nomUsuari', '', time() - 3600);
+    setcookie('logged', '', time() - 3600);
     $loggedIn = false;
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
@@ -59,7 +68,7 @@ if (isset($_GET['logout'])) {
             <p><?php echo $missatge; ?></p>
         <?php endif; ?>
     <?php else: ?>
-        <h2>Hola, <?php echo $_SESSION['username']; ?>!</h2>
+        <h2>Hola, <?php echo $username; ?>!</h2>
         <p>Tria el joc al qual vols jugar:</p>
         <ul>
             <li><a href="./ofegat/index.php">Jugar al Penjat</a></li>

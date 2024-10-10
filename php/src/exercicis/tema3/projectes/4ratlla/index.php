@@ -2,7 +2,7 @@
 session_start();
 include 'functions.php';
 
-if (!isset($_COOKIE['nomUsuari'])) {
+if ($_COOKIE['logged'] !== '1') {
     echo "<p>Acceso denegado. Debes iniciar sesión para acceder a esta página.</p>";
     echo "<a href='../index.php'>Volver a la página de inicio de sesión</a>";
     exit(); 
@@ -18,6 +18,14 @@ if (isset($_POST['reiniciar'])) {
     session_destroy();
     header("Location: index.php");
     exit();
+}
+
+if (isset($_POST['inicio'])) {
+    if(!isset($_COOKIE['nomUsuari'])) {
+        setcookie('logged', value: '', expires_or_options: time() - 3600, path: '/exercicis/tema3/projectes');
+    }
+    header("Location: ../index.php");
+    exit(); 
 }
 
 $graella = $_SESSION['graella'];
@@ -109,8 +117,8 @@ if ($guanyador !== null) {
 echo "<form action='' method='post'>
         <button type='submit' name='reiniciar'>Reiniciar Joc</button>
       </form>
-      <form action='../index.php' method='get'>
-        <button type='submit'>Volver a la pàgina d'inici</button>
+      <form action='' method='post'>
+        <button type='submit' name='inicio'>Volver a la pàgina d'inici</button>
     </form>";
 
 if ($guanyador === null) {
